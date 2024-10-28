@@ -18,3 +18,4 @@ bash
 
 - User: `admin@user.com`
 - Password: `secret`
+
