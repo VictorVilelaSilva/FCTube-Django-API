@@ -28,13 +28,15 @@
 ## Comandos mais utilizados
 
 ### Docker
-bash
-```
+```bash
     docker compose up 
 ```
-### Pipenv
-bash
+caso de algum problema tente rodar o comando abaixo
+```bash
+    service docker start
 ```
+### Pipenv
+```bash
     pipenv shell
 ```
 ## Default users
@@ -43,4 +45,13 @@ bash
 
 - User: `admin@user.com`
 - Password: `secret`
+
+### server
+- admin: `postgres`
+- password: `root`
+
+### superuser
+- username: `victorVilela`
+- email: `victor@gmail.com`
+- password: `1598`
 

@@ -1,1 +1,4 @@
 db.sqlite3
+.venv
+#qualquer python cache
+*.pyc
