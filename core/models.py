@@ -10,7 +10,6 @@ class Video(models.Model):
     title        = models.CharField(max_length=100,verbose_name='Título')
     description  = models.TextField(verbose_name='Descrição')
     thumbnail    = models.ImageField(upload_to='thumbnails/',null=True,verbose_name='thumbnail')
-    video        = models.FileField(upload_to='videos/',null=True,verbose_name='Vídeo')
     slug         = models.SlugField(max_length=100, unique=True)
     published_at = models.DateTimeField(verbose_name='Publicado em', null=True, editable=False)
     is_published = models.BooleanField(default=False,verbose_name='Está publicado?')
@@ -37,6 +36,23 @@ class Video(models.Model):
     # A classe abaixo faz com que o nome do objeto seja exibido no admin
     def __srt__(self):
         return self.title
+
+
+class VideoMedia(models.Model):
+    
+    class Status(models.TextChoices):
+        UPLOADED_STARTED = 'UPLOADED_STARTED', 'Upload iniciado'
+        PROCESS_STARTED = 'PROCESSING_STARTED', 'Processamento Iniciado'
+        PROCESS_FINISHED = 'PROCESSING_FINISHED', 'Processamento finalizado'
+        PROCESS_ERROR = 'PROCESSING_ERROR', 'Erro no Processamento'
+    
+    video_path = models.CharField(max_length=255, verbose_name='Videos')
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.UPLOADED_STARTED, verbose_name='Status')
+    video = models.OneToOneField(Video, on_delete=models.CASCADE, verbose_name='Vídeo', related_name='video_media')
+
+    class Media:
+        verbose_name = 'Media'
+        verbose_name_plural = 'Midias'
 
 class Tags(models.Model):
     name = models.CharField(max_length=50,unique=True,verbose_name='Nome')
