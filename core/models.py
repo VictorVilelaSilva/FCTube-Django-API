@@ -17,6 +17,7 @@ class Video(models.Model):
     num_likes    = models.IntegerField(default=0, verbose_name='Número de likes', editable=False)
     num_views    = models.IntegerField(default=0,verbose_name='Número de visualizações',editable=False)
     tags         = models.ManyToManyField('Tags',verbose_name='Tags')
+    author       = models.ForeignKey('auth.User',on_delete=models.CASCADE,verbose_name='Autor',editable=False)
 
     # A classe abaixo faz com que o nome da classe seja exibido no plural e singular no admin
     class Meta:
